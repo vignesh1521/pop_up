@@ -1,0 +1,159 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank you for your purchase! - Armerado - Checkout</title>
+</head>
+
+
+<style>
+
+
+    @media (max-width:500px){
+        #con_div{
+            width:75%;
+        }
+    }
+</style>
+
+<body>
+        <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+        <script>
+            window.onload = function() {
+
+
+
+
+            if(document.title =="Thank you for your purchase! - Armerado - Checkout"){
+
+           // let phone = document.getElementsByTagName("bdo")[0].innerText
+            //let order_id=document.getElementsByClassName("os-order-number")[0].innerText 
+            const customerEmail =' phone';
+            const orderId = 'order_id';
+            const url = `https://www.armerado.com/?email=${customerEmail}&order_id=${orderId}`;
+
+
+            var ele_body = document.body
+            ele_body.style.fontFamily = "Russo One, sans-serif"
+
+            var back_div = document.createElement("div")
+            back_div.setAttribute("id", "back_div")
+            
+            back_div.classList.add("new")
+            back_div.style.width = "100%";
+            back_div.style.height = "100%";
+            back_div.style.backgroundColor = "black";
+            back_div.style.opacity = 0.8
+            back_div.style.position="fixed"
+            back_div.style.zIndex=2
+
+            var con_div = document.createElement("div")
+            con_div.setAttribute("id", "con_div")
+
+            con_div.classList.add("main_div")
+            con_div.style.position = "fixed"
+            con_div.style.top = "50%";
+            con_div.style.left = "50%";
+            con_div.style.padding = "0 0 10px 0"
+            con_div.style.transform = "translate(-50%,-50%)"
+            con_div.style.zIndex = 3
+            con_div.style.backgroundColor = "#1d1d1d"
+            con_div.style.borderRadius = "10px"
+            //con_div.style.lineHeight="35px"
+
+            var icon = document.createElement('svg')
+
+
+            var h1 = document.createElement("h1")
+            h1.innerText = "Virtua Rewards"
+
+            h1.style.textAlign = "center"
+            h1.style.color = "white"
+            h1.style.fontSize = "25px"
+
+            var p = document.createElement("p")
+            p.innerText = "To explore and start earning rewards, please click on the link provided. "
+            p.style.color = "white"
+            p.style.width = "75%"
+
+
+            var center = document.createElement('center')
+
+            var canva = document.createElement("canvas")
+            canva.setAttribute("id", "qrcodeCanvas")
+            canva.style.padding = "10px"
+
+
+            var div = document.createElement("div")
+            div.style.color = "white"
+
+            var span = document.createElement("span")
+            span.innerText = ' to Claim Your Free Crypto'
+
+
+            var a = document.createElement('a')
+            a.setAttribute('href', url)
+            a.innerText = 'Click Here'
+            a.style.color = "#1fff00"
+            a.style.textDecoration = "none"
+
+            var div_c = document.createElement("div")
+
+
+            var close = document.createElement("button")
+            close.innerText = "Close"
+            close.style.padding = "8px 30px"
+            close.style.backgroundColor = "#ff8300"
+            close.style.border = "none"
+            close.style.color = "white"
+            close.style.fontWeight = "Bold"
+            close.onclick = function() {
+    back_div.style.display="none"
+    con_div.style.display="none"
+                
+    };
+
+
+            div.append(a)
+            div.append(span)
+
+
+            con_div.append(center)
+
+            center.append(h1)
+            center.append(p)
+            center.append(div)
+            center.append(canva)
+
+            div_c.append(close)
+            center.append(div_c)
+
+            ele_body.append(con_div)
+            ele_body.append(back_div)
+
+
+            const canvas = document.getElementById('qrcodeCanvas');
+            const context = canvas.getContext('2d');
+
+            // Generate the QR code with rugged style
+            QRCode.toCanvas(canvas, url, {
+                width: 200,
+                height: 200,
+                color: {
+                    dark: '#ffffff', // QR code color (white)
+                    light: '#000000' // Background color (black)
+                }
+            }, function (error) {
+                if (error) {
+                    console.error(error);
+                }
+
+            });
+
+        }
+    };
+        </script>
+</body>
+
+</html>
